@@ -1,6 +1,6 @@
 module.exports = {
   up: (QueryInterface, Sequelize) => {
-    return QueryInterface.createTable('Users', {
+    return QueryInterface.createTable('Files', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -11,19 +11,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      email: {
+      path: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
-      },
-      passwordHash: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      provider: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
-        allowNull: false,
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -35,11 +26,11 @@ module.exports = {
       }
     },
     {
-      tableName: "Users",
+      tableName: "Files",
     })
   },
 
   down: QueryInterface => {
-   return QueryInterface.dropTable('Users');
+   return QueryInterface.dropTable('Files');
   }
 }
