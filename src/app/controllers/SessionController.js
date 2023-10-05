@@ -11,7 +11,7 @@ class SessionController {
         })
 
         if (!(await schema.isValid(req.body))) {
-            return res.status(400).json({ error: 'Validação falhou!' });
+            return res.status(400).json({ error: 'Falha na validação.' });
         }
 
         const { email, password } = req.body;

@@ -10,7 +10,7 @@ class UserController {
         })
 
         if (!(await schema.isValid(req.body))) {
-            return res.status(400).json({ error: 'Validação falhou!' });
+            return res.status(400).json({ error: 'Falha na validação.' });
         }
 
         const userExists = await User.findOne({ where: { email: req.body.email } });
@@ -39,7 +39,7 @@ class UserController {
         })
 
         if (!(await schema.isValid(req.body))) {
-            return res.status(400).json({ error: 'Validação falhou!' });
+            return res.status(400).json({ error: 'Falha na validação.' });
         }
 
         const { email, oldPassword } = req.body;
