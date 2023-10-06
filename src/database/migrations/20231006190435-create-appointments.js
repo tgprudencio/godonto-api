@@ -18,9 +18,9 @@ module.exports = {
         onDelete: 'SET NULL',
         allowNull: true,
       },
-      providerId:{
+      memberId:{
         type: Sequelize.INTEGER,
-        references: { model: 'Users', key: 'id' },
+        references: { model: 'Members', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
         allowNull: true,

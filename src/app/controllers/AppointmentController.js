@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 import { startOfHour, parseISO, isBefore, subHours } from 'date-fns';
 import User from '../models/User';
 import File from '../models/File';
-import Appointment from '../models/Appointments';
+import Appointment from '../models/Appointment';
 
 
 class AppointmentController {
