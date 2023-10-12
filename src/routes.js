@@ -35,6 +35,8 @@ routes.post('/members', MemberController.store);
 routes.get('/providers', ProviderController.index);
 routes.get('/providers/:providerId/available', AvailableController.index);
 
+routes.get('/alldates', AlldatesController.index);
+
 routes.get('/appointments', AppointmentController.index);
 routes.post('/appointments', AppointmentController.store);
 routes.delete('/appointments/:id', AppointmentController.delete);
@@ -43,6 +45,5 @@ routes.get('/schedule', ScheduleController.index);
 
 routes.post('/files', upload.single('file'), FileControler.store);
 
-routes.get('/alldates', AlldatesController.index);
 
 export default routes;

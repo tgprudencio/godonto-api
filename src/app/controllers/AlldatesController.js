@@ -1,12 +1,13 @@
-import User from "../models/User";
+import Alldates from "../models/Alldates";
 
 class AlldatesController {
     async index(req, res) {
-        const allDates = await User.findAll({
+        const dates = await Alldates.findAll({
+            attributes: [ 'id', 'name' ],
             order: [ 'id' ]
-        });
+        });     
 
-        return res.json(allDates)
+        return res.json(dates);
     }
 
 }

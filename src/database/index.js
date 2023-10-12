@@ -4,10 +4,11 @@ import File from "../app/models/File";
 import Specialization from "../app/models/Specialization";
 import Member from "../app/models/Member";
 import Appointment from "../app/models/Appointment";
+import Alldates from "../app/models/Alldates";
 
 import databaseConfig from '../config/database';
 
-const models = [User, File, Specialization, Member, Appointment];
+const models = [User, File, Specialization, Member, Appointment, Alldates];
 
 class Database {
     constructor() {
