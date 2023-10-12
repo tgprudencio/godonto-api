@@ -4,6 +4,7 @@ import User from '../models/User';
 import Member from '../models/Member';
 import File from '../models/File';
 import Appointment from '../models/Appointment';
+import Specialization from '../models/Specialization';
 
 
 class AppointmentController {
@@ -33,6 +34,13 @@ class AppointmentController {
                     model: Member,
                     as: 'member',
                     attributes: [ 'id', 'name' ],
+                    include: [
+                        {
+                            model: Specialization,
+                            as: 'specialization',
+                            attributes: [ 'id', 'name' ]
+                        }
+                    ]
                 },
             ]
         });

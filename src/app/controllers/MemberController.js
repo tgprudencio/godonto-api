@@ -7,6 +7,7 @@ class MemberController {
     async index(req, res) {
         const members = await Member.findAll({
             where: { deletedAt: null },
+            order: [ 'id' ],
             attributes: ['id', 'name', 'email', 'specializationId'],
             include: [{
                 model: Specialization,

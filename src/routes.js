@@ -11,6 +11,7 @@ import ScheduleController from './app/controllers/ScheduleController';
 import AvailableController from './app/controllers/AvailableController';
 import SpecializationController from './app/controllers/SpecializationController';
 import MemberController from './app/controllers/MemberController';
+import AlldatesController from './app/controllers/AlldatesController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -41,5 +42,7 @@ routes.delete('/appointments/:id', AppointmentController.delete);
 routes.get('/schedule', ScheduleController.index);
 
 routes.post('/files', upload.single('file'), FileControler.store);
+
+routes.get('/alldates', AlldatesController.index);
 
 export default routes;
