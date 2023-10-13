@@ -105,6 +105,48 @@ class AppointmentController {
         return res.json(appointment);
     }
 
+    async update (req, res) {
+        const schema = Yup.object().shape({
+            userId: Yup.number().required(),
+            memberId: Yup.number().required(),
+            date: Yup.date().required(),
+        })
+
+        if (!(await schema.isValid(req.body))) {
+            return res.status(400).json({ error: 'Falha na validação.' });
+        }
+
+        const { userId, memberId, date } = req.body;
+        
+        // Checking past dates
+        const hourStart = startOfHour(parseISO(date));
+        if (isBefore(hourStart, new Date())) {
+            return res.status(400).json({ error: 'Não é possível agendar uma consulta em uma data passada' });
+        }
+
+        // Check date availability
+        const checkAvailability = await Appointment.findOne({
+            where: {
+                memberId,
+                canceledAt: null,
+                date: hourStart
+            }
+        })
+
+        if (checkAvailability) {
+            return res.status(400).json({ error: 'O horário escolhido já foi reservado.' });
+        }
+
+
+        const appointment = await Appointment.findByPk(req.params.id);
+
+        
+        const { id } = await appointment.update(req.body);
+
+
+        return res.json({ id, date, userId, memberId });
+    }
+
 }
 
 export default new AppointmentController();

@@ -5,7 +5,6 @@ import { Op } from "sequelize";
 class AvailableController {
     async index(req, res) {
         const { date } = req.query;
-
         if (!date) {
             return res.status(400).json({ error: 'Data inválida.' });
         }
@@ -14,7 +13,7 @@ class AvailableController {
 
         const appointments = await Appointment.findAll({
             where: {
-                providerId: req.params.providerId,
+                memberId: req.params.memberId,
                 canceledAt: null,
                 date: {
                     [ Op.between ]: [ startOfDay(searchDate), endOfDay(searchDate) ],

@@ -33,13 +33,14 @@ routes.get('/members', MemberController.index);
 routes.post('/members', MemberController.store);
 
 routes.get('/providers', ProviderController.index);
-routes.get('/providers/:providerId/available', AvailableController.index);
+routes.get('/providers/:memberId/available', AvailableController.index);
 
 routes.get('/alldates', AlldatesController.index);
 
 routes.get('/appointments', AppointmentController.index);
 routes.post('/appointments', AppointmentController.store);
 routes.delete('/appointments/:id', AppointmentController.delete);
+routes.put('/appointments/:id', AppointmentController.update);
 
 routes.get('/schedule', ScheduleController.index);
 
