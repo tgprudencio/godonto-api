@@ -8,15 +8,23 @@ import Specialization from '../models/Specialization';
 
 
 class AppointmentController {
+    async list(req, res) {
+        const appointments = await Appointment.findAll({
+            where : { memberId: req.params.memberId, canceledAt: null },
+            order: [ 'date' ],
+            attributes: [ 'id', 'date' ],
+        });
+
+        return res.json(appointments);
+    }
+
     async index(req, res) {
-        const { userId, page = 1 } = req.query;
+        const { userId } = req.query;
 
         const appointments = await Appointment.findAll({
             where : { userId: userId, canceledAt: null },
             order: [ 'date' ],
             attributes: [ 'id', 'date', 'past', 'cancelable' ],
-            limit: 20,
-            offset: (page -1) * 20,
             include: [
                 {
                     model: User,
