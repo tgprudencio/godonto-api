@@ -3,7 +3,7 @@ module.exports = {
   host: 'localhost',
   username: 'postgres',
   password: 'postgres',
-  database: 'postgres',
+  database: 'godonto',
   define: {
     timestamps: true,
     underscore: true,
