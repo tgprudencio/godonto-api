@@ -2,7 +2,7 @@ module.exports = {
   dialect: 'postgres',
   host: 'localhost',
   username: 'postgres',
-  password: 'godontodeploy',
+  password: 'postgres',
   database: 'postgres',
   define: {
     timestamps: true,
