@@ -8,7 +8,7 @@ class MemberController {
         const members = await Member.findAll({
             where: { deletedAt: null },
             order: [ 'id' ],
-            attributes: ['id', 'name', 'email', 'specializationId'],
+            attributes: ['id', 'name', 'email', 'specializationId', 'professionStartAt'],
             include: [{
                 model: Specialization,
                 as: 'specialization',
