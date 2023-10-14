@@ -24,25 +24,20 @@ class UserController {
     }
 
     async update (req,res) {
+        console.log(req.body)
         const schema = Yup.object().shape({
             name: Yup.string(),
             email: Yup.string().email(),
-            oldPassword: Yup.string().min(6),
-            password: Yup.string()
-                .min(6)
-                .when('oldPassword', (oldPassword, field) => 
-                oldPassword ? field.required() : field
-            ),
-            confirmPassword: Yup.string().when('password', (password, field) =>
-                password ? field.required().oneOf([Yup.ref('password')]) : field
-            )
+            oldPassword: Yup.string(),
+            password: Yup.string(),
+            confirmPassword: Yup.string(),
         })
 
         if (!(await schema.isValid(req.body))) {
             return res.status(400).json({ error: 'Falha na validação.' });
         }
 
-        const { email, oldPassword } = req.body;
+        const { email, oldPassword, password, confirmPassword } = req.body;
 
         const user = await User.findByPk(req.userId);
 
@@ -56,6 +51,10 @@ class UserController {
 
         if (oldPassword && !(await user.checkPassword(oldPassword))) {
             return res.status(401).json({ error: 'Senha incorreta.' });
+        }
+
+        if (password && password != confirmPassword) {
+            return res.status(401).json({ error: 'Nova senha incorreta.' });
         }
         
         const { id, name, provider } = await user.update(req.body);
