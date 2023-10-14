@@ -37,6 +37,7 @@ routes.get('/providers/:memberId/available', AvailableController.index);
 
 routes.get('/alldates', AlldatesController.index);
 
+routes.get('/appointments/:memberId', AppointmentController.list);
 routes.get('/appointments', AppointmentController.index);
 routes.post('/appointments', AppointmentController.store);
 routes.delete('/appointments/:id', AppointmentController.delete);
